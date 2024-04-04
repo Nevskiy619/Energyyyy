@@ -1,28 +1,24 @@
-name: CI/CD
+name: ASP.NET 6.0 API StyleCop Check
 
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - '*'
+on: [push, pull_request]
 
 jobs:
-  check-style-csharp:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-      - name: Setup .NET Core SDK
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: '6.0.x'
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 6.0.x
 
-      - name: Restore dependencies
-        run: dotnet restore
+    - name: Install StyleCop
+      run: dotnet tool install --global StyleCop.Analyzers
 
-      - name: Check code style
-        run: dotnet build --no-restore --configuration Release
+    - name: Build and Analyze
+      run: |
+        dotnet build EnergyApi2.sln
+        dotnet stylecop analyze EnergyApi2.csproj

@@ -3,5 +3,7 @@
   <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <Import Project="$(NuGetPackageRoot)system.text.json\7.0.1\buildTransitive\net6.0\System.Text.Json.targets" Condition="Exists('$(NuGetPackageRoot)system.text.json\7.0.1\buildTransitive\net6.0\System.Text.Json.targets')" />
     <Import Project="$(NuGetPackageRoot)microsoft.extensions.apidescription.server\6.0.5\build\Microsoft.Extensions.ApiDescription.Server.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.extensions.apidescription.server\6.0.5\build\Microsoft.Extensions.ApiDescription.Server.targets')" />
+    <Import Project="$(NuGetPackageRoot)stylecop.msbuild\4.7.49\build\StyleCop.MSBuild.Targets" Condition="Exists('$(NuGetPackageRoot)stylecop.msbuild\4.7.49\build\StyleCop.MSBuild.Targets')" />
+    <Import Project="$(NuGetPackageRoot)stylecop.error.msbuild\1.0.0\build\StyleCop.Error.MSBuild.Targets" Condition="Exists('$(NuGetPackageRoot)stylecop.error.msbuild\1.0.0\build\StyleCop.Error.MSBuild.Targets')" />
   </ImportGroup>
 </Project>
