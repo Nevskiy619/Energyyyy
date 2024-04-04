@@ -21,11 +21,8 @@ jobs:
     # - name: Install StyleCop Analyzers
     #   run: Install-Package StyleCop.Analyzers
 
-    - name: Restore dependencies
-      run: dotnet restore
+    - name: Install StyleCop
+      run: dotnet add package StyleCop.Analyzers --version 1.1.118 
 
     - name: Build project
       run: dotnet build
-
-    - name: Run StyleCop
-      run: dotnet build --no-incremental 
