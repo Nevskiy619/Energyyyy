@@ -1,6 +1,9 @@
-name: ASP.NET 6.0 API StyleCop Check
+name: StyleCop Check
 
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   build:
@@ -10,15 +13,19 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Setup .NET
+    - name: Set up .NET
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 6.0.x
+        dotnet-version: '6.0.x'
 
-    - name: Install StyleCop
-      run: dotnet tool install --global StyleCop.Analyzers
+    - name: Install StyleCop Analyzers
+      run: dotnet tool install StyleCop.Analyzers --global
 
-    - name: Build and Analyze
-      run: |
-        dotnet build EnergyApi2.sln
-        dotnet stylecop analyze EnergyApi2.csproj
+    - name: Restore dependencies
+      run: dotnet restore
+
+    - name: Build project
+      run: dotnet build
+
+    - name: Run StyleCop
+      run: dotnet build /p:ValidateStylecop=true
